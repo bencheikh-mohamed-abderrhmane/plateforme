@@ -1,0 +1,73 @@
+/* Style de base pour la page Merci */
+.merci-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Style pour le titre */
+  .merci-container h2 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour le paragraphe */
+  .merci-container p {
+    font-size: 1.25rem;
+    color: #34495e;
+    margin-bottom: 30px;
+  }
+  
+  /* Style pour le bouton */
+  .merci-container .btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .merci-container .btn:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Media queries pour la responsivité */
+  @media (max-width: 768px) {
+    .merci-container h2 {
+      font-size: 2rem;
+    }
+  
+    .merci-container p {
+      font-size: 1.1rem;
+    }
+  
+    .merci-container .btn {
+      padding: 12px 25px;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .merci-container h2 {
+      font-size: 1.8rem;
+    }
+  
+    .merci-container p {
+      font-size: 1rem;
+    }
+  
+    .merci-container .btn {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  }
+  

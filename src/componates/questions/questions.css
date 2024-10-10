@@ -1,0 +1,33 @@
+/* Style for the FAQ container */
+.faq-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for each question */
+.question-item {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+/* Style for question text */
+.question-item h4 {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Style for answer */
+.answer {
+    display: none;
+    padding: 10px 0;
+    font-size: 1em;
+    color: #555;
+}
+
+/* Style for showing answer */
+.answer.show {
+    display: block;
+}

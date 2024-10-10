@@ -1,0 +1,108 @@
+/* Style général de la barre de navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Logo */
+.navbar-logo img {
+    height: 40px;
+}
+
+/* Menu Desktop */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.navbar-menu li a {
+    text-decoration: none !important; /* Enlève le soulignement */
+    color: #2a2a2a !important; /* Couleur noire (ou autre couleur désirée) */
+    font-weight: bold;
+}
+
+/* Enlever la couleur bleue et le soulignement lors du clic ou de la visite */
+.navbar-menu li a:visited, 
+.navbar-menu li a:focus, 
+.navbar-menu li a:active {
+    color: #2a2a2a !important;
+    text-decoration: none !important;
+}
+
+/* Lien au survol */
+.navbar-menu li a:hover, .navbar-client a:hover {
+    color: #007BFF; /* Couleur différente au survol */
+}
+
+/* Espace client */
+.navbar-client a {
+    text-decoration: none !important;
+    color: #2a2a2a !important;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 1px solid #2a2a2a;
+    border-radius: 5px;
+}
+
+/* Icône de menu mobile (hamburger) */
+.mobile-menu-icon {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-menu, .navbar-client {
+        display: none;
+    }
+    
+    .mobile-menu-icon {
+        display: block;
+        color: #2a2a2a;
+    }
+    
+    /* Menu pour mobile */
+    .navbar-menu-mobile {
+        position: absolute;
+        top: 60px;
+        left: -100%; /* Par défaut, le menu est hors écran */
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        gap: 20px;
+        text-align: center;
+        transition: left 0.3s ease;
+    }
+    
+    .navbar-menu-mobile.active {
+        left: 0; /* Quand actif, le menu est visible */
+    }
+    
+    .navbar-menu-mobile li a {
+        text-decoration: none !important; /* Pas de soulignement */
+        color: #2a2a2a !important;
+        font-weight: bold;
+        padding: 10px;
+        display: block;
+    }
+
+    /* Afficher Espace Client dans le menu mobile */
+    .navbar-client {
+        display: block;
+        text-align: center;
+        padding-top: 20px;
+    }
+}
