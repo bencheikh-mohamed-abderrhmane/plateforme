@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './work.css';
-import image13 from '../assets/Screenshot 2024-10-06 14.51.13.png';
+import image13 from '../assets/Screenshot 2024-10-13 09.13.59.png';
 import image1 from '../assets/Screenshot 2024-10-06 14.36.53.png';
 import image2 from '../assets/Screenshot 2024-10-06 14.37.05.png';
 import image3 from '../assets/Screenshot 2024-10-06 14.37.26.png';
@@ -11,8 +11,9 @@ import image7 from '../assets/Screenshot 2024-10-06 14.39.16.png';
 import image8 from '../assets/Screenshot 2024-10-06 14.39.21.png';
 import image9 from '../assets/Screenshot 2024-10-06 14.40.00.png';
 import image10 from '../assets/Screenshot 2024-10-06 14.47.03.png';
-import image11 from '../assets/Screenshot 2024-10-06 14.50.50.png';
-import image12 from '../assets/Screenshot 2024-10-06 14.51.03.png';
+import image11 from '../assets/Screenshot 2024-10-06 14.51.03.png';
+import image12 from '../assets/Screenshot 2024-10-13 09.13.38.png';
+import image14 from '../assets/Screenshot 2024-10-13 09.14.21.png'
 
 function Work() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -57,14 +58,19 @@ function Work() {
                 </div>
             </div>
             
-            {/* Projet 3 - Pokélist */}
+            {/* Projet 3 - SpaceSortium */}
             <div className="project">
-                <h3>Pokélist</h3>
-                <p>Pokélist est une application qui permet aux utilisateurs d'explorer et de rechercher des Pokémon en fonction de différents critères (nom, type, etc.). L'interface est intuitive et propose des fiches détaillées pour chaque Pokémon, incluant des informations sur leurs statistiques, leurs évolutions, et leurs attaques. La liste est dynamique et se met à jour en temps réel pour offrir une expérience interactive. Conçue pour les amateurs de Pokémon, cette application est un outil amusant et éducatif, idéal pour tout fan de la série.</p>
+                <h3>SpaceSortium</h3>
+                <p>SpaceSortium est une plateforme innovante de réseau social spécialement conçue pour les scientifiques et les chercheurs du monde entier. Elle offre un espace où les utilisateurs peuvent publier leurs travaux de recherche, échanger des idées, et collaborer au sein de communautés thématiques dédiées à divers domaines scientifiques. Chaque utilisateur a la possibilité de rejoindre des groupes de discussion, de partager des ressources, et de participer à des projets collaboratifs de grande envergure.
+
+L'une des particularités de SpaceSortium est son organisation par réseau de recherche national, permettant à chaque pays d'avoir son propre écosystème scientifique en ligne. Cela facilite la coordination des efforts de recherche à un niveau local tout en offrant la possibilité de partager et de collaborer à l'échelle internationale. Les chercheurs peuvent ainsi bénéficier d'une connexion fluide entre leur propre réseau et ceux des autres pays, favorisant le partage de données, les découvertes communes, et les avancées scientifiques globales.
+
+En plus de ces fonctionnalités, SpaceSortium intègre des outils spécifiques qui simplifient la gestion de projets, la rédaction de publications scientifiques, et le travail collaboratif à distance. Ces outils permettent aux chercheurs de travailler plus efficacement, de gérer leurs équipes, et d’organiser des événements tels que des conférences ou des ateliers en ligne. Avec un environnement sécurisé et adapté aux besoins des scientifiques, SpaceSortium se positionne comme un acteur clé dans la transformation de la manière dont la recherche est menée et partagée à l'échelle mondiale.</p>
                 <div className="project-images">
                     <img src={image11} alt="Project 3 - Image 1" onClick={() => handleImageClick(image11)} />
                     <img src={image12} alt="Project 3 - Image 2" onClick={() => handleImageClick(image12)} />
                     <img src={image13} alt="Project 3 - Image 3" onClick={() => handleImageClick(image13)} />
+                    <img src={image14} alt="Project 3 - Image 4" onClick={() => handleImageClick(image14)} />
                 </div>
             </div>
 
