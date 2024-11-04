@@ -12,12 +12,14 @@ function Shop(props) {
         <div>
              <img className='banner' src={banner} alt="" />
             <Hero />
+            <h1 className='name-affiche'>Nos Meilleurs Service</h1>
             <Affiche />
             <About />
             <Partenaires />
             <Questions />
+            <h1 className='name-affiche'>Contactez nous</h1>
             <Contact />
-            <h4 className='copy'>Copyright © 2024 SPACE SORTIUM | Site web développé par Bencheikh Mohamed Abderrahmane</h4>
+            <h4 className='copy'>Copyright © 2024 SPACE SORTIUM </h4>
         </div>
     );
 }

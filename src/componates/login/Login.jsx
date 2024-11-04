@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { auth, googleProvider } from './firebase.js';
+import { auth, googleProvider, db } from './firebase.js'; // Ajoute db pour Firestore
 import { signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify'; // Importation nécessaire
-import 'react-toastify/dist/ReactToastify.css'; // Importation des styles Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import { doc, setDoc, getDoc } from 'firebase/firestore'; // Import Firestore
+import 'react-toastify/dist/ReactToastify.css';
 import './login.css';
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
 
     const [isChecked, setIsChecked] = useState(false);
     const [error, setError] = useState("");
-    const [state, setState] = useState("Login");
+    const [state, setState] = useState("Se connecter");
     const navigate = useNavigate();
 
     const changeHandler = (e) => {
@@ -26,54 +27,87 @@ function Login() {
         setIsChecked(e.target.checked);
     };
 
+    // Fonction pour ajouter l'utilisateur dans Firestore s'il n'existe pas
+    const addExistingUserToFirestore = async (user) => {
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (!userDoc.exists()) {
+            await setDoc(userRef, {
+                email: user.email,
+                username: formData.username || "Anonyme",
+                role: "user",
+                createdAt: new Date()
+            });
+            console.log("Utilisateur ajouté à Firestore");
+        } else {
+            console.log("L'utilisateur est déjà dans Firestore");
+        }
+    };
+
     const handleSubmit = async () => {
         if (!isChecked) {
-            setError("You must agree to the terms and conditions to continue.");
+            setError("Vous devez accepter les conditions pour continuer.");
             return;
         }
 
         setError("");
         try {
-            if (state === "Sign Up") {
-                await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-                toast.success("Inscription réussie !", { position: "top-right" }); // Notification corrigée
+            if (state === "S'inscrire") {
+                const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                const user = userCredential.user;
+
+                // Ajouter l'utilisateur dans Firestore après l'inscription
+                await addExistingUserToFirestore(user);
+
+                toast.success("Inscription réussie !", { position: "top-right" });
                 navigate('/');
             } else {
-                await signInWithEmailAndPassword(auth, formData.email, formData.password);
-                toast.success("Connexion réussie !", { position: "top-right" }); // Notification corrigée
+                const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+                const user = userCredential.user;
+
+                // Vérifier et ajouter l'utilisateur à Firestore s'il n'existe pas
+                await addExistingUserToFirestore(user);
+
+                toast.success("Connexion réussie !", { position: "top-right" });
                 navigate('/');
             }
         } catch (err) {
             setError(err.message);
-            toast.error(err.message, { position: "top-right" }); // Notification d'erreur corrigée
+            toast.error(err.message, { position: "top-right" });
         }
     };
 
     const handleGoogleLogin = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
-            toast.success("Connexion réussie avec Google !", { position: "top-right" }); // Notification corrigée
+            const userCredential = await signInWithPopup(auth, googleProvider);
+            const user = userCredential.user;
+
+            // Vérifier et ajouter l'utilisateur dans Firestore après la connexion Google
+            await addExistingUserToFirestore(user);
+
+            toast.success("Connexion réussie avec Google !", { position: "top-right" });
             navigate('/');
         } catch (err) {
             setError(err.message);
-            toast.error(err.message, { position: "top-right" }); // Notification d'erreur corrigée
+            toast.error(err.message, { position: "top-right" });
         }
     };
 
     return (
         <div className='loginsignup'>
-            <ToastContainer /> {/* Conteneur pour les notifications */}
+            <ToastContainer />
             <div className='loginsignup-container'>
                 <h1>{state}</h1>
                 <div className="loginsignup-fields">
-                    {state === "Sign Up" && (
+                    {state === "S'inscrire" && (
                         <input
                             className='name'
                             name='username'
                             value={formData.username}
                             onChange={changeHandler}
                             type="text"
-                            placeholder='Your Name'
+                            placeholder='Votre nom'
                         />
                     )}
                     <input
@@ -82,7 +116,7 @@ function Login() {
                         value={formData.email}
                         onChange={changeHandler}
                         type="email"
-                        placeholder='Email Address'
+                        placeholder='Adresse email'
                     />
                     <input
                         className='password'
@@ -90,23 +124,23 @@ function Login() {
                         name='password'
                         value={formData.password}
                         onChange={changeHandler}
-                        placeholder='Password'
+                        placeholder='Mot de passe'
                     />
                 </div>
                 {error && <p className="error-message">{error}</p>}
                 <button onClick={handleSubmit} className="continue-button">
-                    {state === "Sign Up" ? "Sign Up" : "Login"}
+                    {state === "S'inscrire" ? "S'inscrire" : "Se connecter"}
                 </button>
                 <button onClick={handleGoogleLogin} className="google-button">Se connecter avec Google</button>
-                {state === "Sign Up" ? (
+                {state === "S'inscrire" ? (
                     <p className='loginsignup-login'>
                         Vous avez déjà un compte ?
-                        <span onClick={() => setState("Login")}> Se connecter</span>
+                        <span onClick={() => setState("Se connecter")}> Se connecter</span>
                     </p>
                 ) : (
                     <p className='loginsignup-login'>
                         Créez un compte ?
-                        <span onClick={() => setState("Sign Up")}> Cliquez ici</span>
+                        <span onClick={() => setState("S'inscrire")}> Cliquez ici</span>
                     </p>
                 )}
                 <div className="loginsignup-agree">

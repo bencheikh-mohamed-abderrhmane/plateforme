@@ -12,6 +12,9 @@ function Contact() {
         message: ''
     });
 
+    const [loading, setLoading] = useState(false); // Indique si l'envoi est en cours
+    const [error, setError] = useState(null); // Stocke les erreurs si elles se produisent
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -19,9 +22,17 @@ function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true);
+        setError(null);
+    
+        // Validation supplémentaire des données avant l'envoi
+        if (!formData.name || !formData.email || !formData.subject || !formData.phone || !formData.message) {
+            setError("Veuillez remplir tous les champs.");
+            setLoading(false);
+            return;
+        }
+    
         try {
-            // Ajoute les données à la collection "support"
             await addDoc(collection(db, 'support'), {
                 name: formData.name,
                 email: formData.email,
@@ -30,20 +41,24 @@ function Contact() {
                 message: formData.message,
                 timestamp: new Date()
             });
+    
             alert("Message envoyé avec succès!");
-            setFormData({ name: '', email: '', subject: '', phone: '', message: '' }); // Réinitialise le formulaire
+            setFormData({ name: '', email: '', subject: '', phone: '', message: '' });
         } catch (error) {
-            console.error("Erreur lors de l'envoi du message: ", error);
-            alert("Erreur lors de l'envoi du message. Réessayez plus tard.");
+            console.error("Erreur lors de l'envoi du message:", error.message);
+            setError("Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.");
+        } finally {
+            setLoading(false);
         }
     };
+    
 
     return (
         <div className="contact-container">
-            {/* Left side: Contact information */}
+            {/* Section d'information de contact */}
             <div className="contact-info">
                 <div>
-                    <h4>SPACE SORTIUM</h4>
+                    <h4>QUENTUM SPACE</h4>
                     <p>Cyber Parc, Sidi Abdellah N°CA-E1-M16, ALGER, ALGER 16 000, DZ</p>
                 </div>
                 <div>
@@ -56,11 +71,12 @@ function Contact() {
                 </div>
                 <div>
                     <h4>Nous sommes disponibles</h4>
-                    <p>Dimanche - Jeudi<br/>08h30 - 17h00</p>
+                    <p>Dimanche - Jeudi<br />08h30 - 17h00</p>
                 </div>
             </div>
+            <div className='right-side'>
 
-            {/* Right side: Contact form */}
+            {/* Formulaire de contact */}
             <form className="contact-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -89,7 +105,7 @@ function Contact() {
                 <input
                     type="text"
                     name="phone"
-                    placeholder="numéro de téléphone"
+                    placeholder="Numéro de téléphone"
                     value={formData.phone}
                     onChange={handleChange}
                     required
@@ -102,8 +118,15 @@ function Contact() {
                     onChange={handleChange}
                     required
                 ></textarea>
-                <button type="submit">Envoyer message</button>
+                
+                {/* Message d'erreur si quelque chose ne va pas */}
+                {error && <p className="error-message">{error}</p>}
+                
+                <button type="submit" disabled={loading}>
+                    {loading ? 'Envoi en cours...' : 'Envoyer message'}
+                </button>
             </form>
+            </div>
         </div>
     );
 }

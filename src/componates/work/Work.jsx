@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import './work.css';
 import image13 from '../assets/Screenshot 2024-10-13 09.13.59.png';
-import image1 from '../assets/Screenshot 2024-10-06 14.36.53.png';
-import image2 from '../assets/Screenshot 2024-10-06 14.37.05.png';
-import image3 from '../assets/Screenshot 2024-10-06 14.37.26.png';
-import image4 from '../assets/Screenshot 2024-10-06 14.37.48.png';
-import image5 from '../assets/Screenshot 2024-10-06 14.37.58.png';
-import image6 from '../assets/Screenshot 2024-10-06 14.39.06.png';
-import image7 from '../assets/Screenshot 2024-10-06 14.39.16.png';
-import image8 from '../assets/Screenshot 2024-10-06 14.39.21.png';
-import image9 from '../assets/Screenshot 2024-10-06 14.40.00.png';
-import image10 from '../assets/Screenshot 2024-10-06 14.47.03.png';
+
+import image9 from '../assets/Screenshot 2024-10-21 12.06.25.png';
+import image10 from '../assets/Screenshot 2024-10-21 12.06.43.png';
 import image11 from '../assets/Screenshot 2024-10-06 14.51.03.png';
 import image12 from '../assets/Screenshot 2024-10-13 09.13.38.png';
 import image14 from '../assets/Screenshot 2024-10-13 09.14.21.png'
+
+import image1 from '../assets/Screenshot 2024-10-24 15.00.20.png'
+import image2 from '../assets/Screenshot 2024-10-24 15.00.38.png'
+import image3 from '../assets/Screenshot 2024-10-24 15.00.50.png'
+import image4 from '../assets/Screenshot 2024-10-24 15.00.59.png'
+import image5 from '../assets/Screenshot 2024-10-24 15.13.48.png'
+
+
+import image15 from '../assets/Screenshot 2024-10-21 12.06.53.png'
+import image16 from '../assets/Screenshot 2024-10-21 12.07.22.png'
+import image17 from '../assets/Screenshot 2024-10-21 12.07.39.png'
+import image18 from '../assets/Screenshot 2024-10-21 12.09.49.png'
+import { Form } from 'react-router-dom';
 
 function Work() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -32,40 +38,59 @@ function Work() {
         <div className="portfolio-container">
             <h2>Nos Derniers Projets</h2>
             
-            {/* Projet 1 - E-commerce */}
+
+           
+            
+            
+            {/* Projet 2 - Application de Chat */}
             <div className="project">
-                <h3>Site E-commerce - Vente de Jeux Vidéo</h3>
-                <p>Ce projet est une plateforme de vente en ligne spécialisée dans les jeux vidéo. Elle comprend un système complet de gestion des produits avec un panneau d'administration pour ajouter, modifier et supprimer des jeux. Les utilisateurs peuvent créer un compte, gérer leur wishlist, ajouter des articles à leur panier, et finaliser leurs achats en toute sécurité grâce à un système d'authentification. L'interface utilisateur est fluide et optimisée pour tous les appareils, et un back-end robuste gère les commandes et les stocks. Le site est conçu pour offrir une expérience utilisateur intuitive, avec des fonctionnalités comme les promotions, les nouveautés et la gestion des avis.</p>
+            <h3>Site E-commerce - Vente d'Équipement de Sport</h3>
+<p>Ce projet est une plateforme de vente en ligne dédiée aux équipements de sport. Il intègre un système complet de gestion des produits avec un panneau d'administration permettant d'ajouter, modifier et supprimer des articles de sport. Les utilisateurs peuvent créer un compte, gérer leur wishlist, ajouter des produits à leur panier, et finaliser leurs achats en toute sécurité grâce à un système d'authentification. L'interface utilisateur est intuitive et responsive, optimisée pour tous les appareils. Un back-end solide assure la gestion des commandes, des stocks et des promotions. Le site propose également des fonctionnalités telles que les nouveautés, les avis des clients et des recommandations personnalisées pour offrir une expérience utilisateur fluide et engageante.</p>
+
+                <div className="project-images">
+                    <img src={image9} alt="Project 2 - Image 1" onClick={() => handleImageClick(image9)} />
+                    <img src={image10} alt="Project 2 - Image 2" onClick={() => handleImageClick(image10)} />
+
+                    <img src={image15} alt="Project 2 - Image 3" onClick={() => handleImageClick(image15)} />
+                    <img src={image16} alt="Project 2 - Image 4" onClick={() => handleImageClick(image16)} />
+                    <img src={image17} alt="Project 2 - Image 5" onClick={() => handleImageClick(image17)} />
+                    <img src={image18} alt="Project 2 - Image 6" onClick={() => handleImageClick(image18)} />
+                </div>
+            </div>
+
+
+             <div className="project">
+                <h3>Site Vitrine - Équipements Sportifs</h3> <p>Ce projet est une plateforme vitrine dédiée à la présentation des équipements sportifs de [Nom de la Marque]. Elle propose les dernières offres et produits phares de la marque, avec des informations détaillées et des visuels de qualité. Les utilisateurs peuvent facilement accéder à un lien vers une **application Android** ou un **site e-commerce** pour en savoir plus ou effectuer des achats. Le site comprend également une interface d'administration, permettant aux responsables de télécharger des images, de modifier les descriptions des produits, et de gérer le contenu du site en toute simplicité. Conçu pour être responsive et convivial, ce site offre une navigation fluide sur tous les appareils, mettant en valeur la marque et ses produits avec élégance.</p>
                 <div className="project-images">
                     <img src={image1} alt="Project 1 - Image 1" onClick={() => handleImageClick(image1)} />
                     <img src={image2} alt="Project 1 - Image 2" onClick={() => handleImageClick(image2)} />
                     <img src={image3} alt="Project 1 - Image 3" onClick={() => handleImageClick(image3)} />
                     <img src={image4} alt="Project 1 - Image 4" onClick={() => handleImageClick(image4)} />
                     <img src={image5} alt="Project 1 - Image 5" onClick={() => handleImageClick(image5)} />
-                    <img src={image6} alt="Project 1 - Image 6" onClick={() => handleImageClick(image6)} />
-                    <img src={image7} alt="Project 1 - Image 7" onClick={() => handleImageClick(image7)} />
-                    <img src={image8} alt="Project 1 - Image 8" onClick={() => handleImageClick(image8)} />
-                </div>
-            </div>
-            
-            {/* Projet 2 - Application de Chat */}
-            <div className="project">
-                <h3>Application de Chat en Temps Réel</h3>
-                <p>Cette application de chat permet aux utilisateurs de discuter en temps réel grâce à un système d'authentification via Google. Elle assure la sauvegarde automatique des conversations, ce qui permet aux utilisateurs de retrouver leur historique à tout moment. Grâce à une interface moderne et minimaliste, l'application offre une expérience de discussion fluide, avec des notifications en temps réel et une synchronisation instantanée des messages. Parfait pour des discussions privées ou en groupe, l'application est hautement sécurisée et évolutive.</p>
-                <div className="project-images">
-                    <img src={image9} alt="Project 2 - Image 1" onClick={() => handleImageClick(image9)} />
-                    <img src={image10} alt="Project 2 - Image 2" onClick={() => handleImageClick(image10)} />
+                   
                 </div>
             </div>
             
             {/* Projet 3 - SpaceSortium */}
             <div className="project">
                 <h3>SpaceSortium</h3>
-                <p>SpaceSortium est une plateforme innovante de réseau social spécialement conçue pour les scientifiques et les chercheurs du monde entier. Elle offre un espace où les utilisateurs peuvent publier leurs travaux de recherche, échanger des idées, et collaborer au sein de communautés thématiques dédiées à divers domaines scientifiques. Chaque utilisateur a la possibilité de rejoindre des groupes de discussion, de partager des ressources, et de participer à des projets collaboratifs de grande envergure.
+                <p>Space-Sortium est une plateforme numérique révolutionnaire conçue pour intégrer et connecter divers acteurs de la société, notamment le grand public, les entreprises, les institutions de recherche, et les organismes publics. Avec pour mission de créer une Smart Nation, Space-Sortium favorise l'innovation, la collaboration, et la participation citoyenne à travers quatre réseaux interconnectés, chacun destiné à une communauté spécifique.
 
-L'une des particularités de SpaceSortium est son organisation par réseau de recherche national, permettant à chaque pays d'avoir son propre écosystème scientifique en ligne. Cela facilite la coordination des efforts de recherche à un niveau local tout en offrant la possibilité de partager et de collaborer à l'échelle internationale. Les chercheurs peuvent ainsi bénéficier d'une connexion fluide entre leur propre réseau et ceux des autres pays, favorisant le partage de données, les découvertes communes, et les avancées scientifiques globales.
+Les Quatre Réseaux du Space-Sortium :
+Space-Sortium Grand Public : Ce réseau social offre un espace interactif où les citoyens peuvent partager des idées, participer à des discussions communautaires, et s'informer sur des sujets d'actualité. Les utilisateurs disposent de profils personnels, de groupes d'intérêt, de forums de discussion, d'événements communautaires, et d'une messagerie instantanée. Ce réseau constitue le point de départ pour connecter les individus au sein de la société.
 
-En plus de ces fonctionnalités, SpaceSortium intègre des outils spécifiques qui simplifient la gestion de projets, la rédaction de publications scientifiques, et le travail collaboratif à distance. Ces outils permettent aux chercheurs de travailler plus efficacement, de gérer leurs équipes, et d’organiser des événements tels que des conférences ou des ateliers en ligne. Avec un environnement sécurisé et adapté aux besoins des scientifiques, SpaceSortium se positionne comme un acteur clé dans la transformation de la manière dont la recherche est menée et partagée à l'échelle mondiale.</p>
+Space-Sortium Entreprises : Destiné aux entreprises, ce réseau facilite le développement de partenariats, le recrutement de talents, et le partage des meilleures pratiques dans un environnement professionnel collaboratif. Les fonctionnalités incluent des profils d'entreprise, des offres d'emploi, des groupes de discussion sectoriels, et des outils pour renforcer le réseautage professionnel et les partenariats commerciaux.
+
+Space-Sortium Recherche : Conçu pour les chercheurs et les établissements académiques, ce réseau favorise la collaboration scientifique et technologique à travers des projets communs. Les membres peuvent partager des publications, accéder à des bibliothèques de recherches, et obtenir des financements pour leurs projets. Les forums académiques permettent un échange d’idées fructueux entre chercheurs et sponsors potentiels.
+
+Space-Sortium Institutions Publiques : Ce réseau permet une communication fluide entre les institutions publiques et les autres acteurs de la plateforme pour améliorer les politiques publiques et les services communautaires. Les institutions peuvent publier des annonces, organiser des consultations publiques, et collaborer avec le secteur privé dans un cadre de transparence et de responsabilité.
+
+Fonctionnalités Transversales :
+Moteur de Recherche Avancé : Accédez rapidement aux membres, entreprises, projets de recherche, et institutions publiques.
+Tableau de Bord Personnalisé : Suivez les activités, les notifications, et les engagements de chaque membre.
+Sécurité et Confidentialité : Garantissez la protection des données avec des protocoles de sécurité robustes.
+Analyse de Données : Des outils analytiques pour fournir des insights sur les interactions et les tendances au sein de la plateforme.
+Actuellement, seule la première plateforme (Grand Public) est en version Bêta, tandis que les autres réseaux sont en cours de déploiement. Ensemble, ces réseaux forment une infrastructure numérique complète pour construire un écosystème connecté et intelligent, soutenant l'innovation et le développement au sein d'une nation.</p>
                 <div className="project-images">
                     <img src={image11} alt="Project 3 - Image 1" onClick={() => handleImageClick(image11)} />
                     <img src={image12} alt="Project 3 - Image 2" onClick={() => handleImageClick(image12)} />

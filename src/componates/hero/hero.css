@@ -2,27 +2,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
-    font-family: Arial, sans-serif;
-}
-.hero input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    width: 250px;
-    margin-bottom: 10px;
-    transition: border-color 0.3s ease;
+    justify-content: center;
+    min-height: 10vh;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin-bottom: 40px;
 }
 
-.hero input:focus {
-    border-color: #38ef7d; /* Utilisation d'un dégradé de vert */
+.hero h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.hero input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .hero button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #11998e;
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
@@ -31,62 +39,29 @@
 }
 
 .hero button:hover {
-    background-color: #38ef7d;
+    background-color: #0056b3;
 }
 
-.hero .result {
+.hero p {
+    font-size: 1.2rem;
     margin-top: 20px;
-    font-size: 18px;
-}
-
-.hero .result.available {
-    color: #38ef7d;
-    display: flex;
-    align-items: center;
-}
-
-.hero .result.not-available {
-    color: #e74c3c;
-}
-
-.hero .result svg {
-    margin-left: 10px;
 }
 
 /* Responsive styles */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
     .hero input {
-        width: 100%;
+        font-size: 1.2rem;
     }
 
     .hero button {
-        width: 100%;
-        padding: 15px;
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        margin: 10px;
+        font-size: 1.2rem;
     }
 
     .hero p {
-        font-size: 14px;
-        text-align: center;
-    }
-
-    .hero input {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .hero button {
-        font-size: 16px;
-        padding: 10px;
-    }
-
-    .hero .result {
-        font-size: 16px;
+        font-size: 1.5rem;
     }
 }

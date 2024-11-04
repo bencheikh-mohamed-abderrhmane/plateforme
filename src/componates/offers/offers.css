@@ -60,6 +60,9 @@ body {
 .btn:hover {
     background-color: #2980b9;
 }
+.price2{
+    color: #fd7e14;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

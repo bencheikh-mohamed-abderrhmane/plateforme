@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; // Importation de useNavigate
+import { useNavigate, useLocation } from "react-router-dom"; 
 import { db, storage } from "../login/firebase"; 
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth"; 
 import axios from 'axios';
-import './form.css'
+import './form.css';
 
 const ProjectForm = () => {
   const [projectData, setProjectData] = useState({
@@ -13,12 +13,12 @@ const ProjectForm = () => {
     domain: "",
     features: "",
     phoneNumber: "",
+    currency: "DZD", // Initialiser la devise par défaut à DZD
   });
   const [image, setImage] = useState(null);
   const [domainAvailability, setDomainAvailability] = useState(""); 
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // Initialiser useNavigate
-
+  const navigate = useNavigate();
   const location = useLocation(); 
   const { offerId } = location.state || {}; 
 
@@ -26,6 +26,13 @@ const ProjectForm = () => {
     setProjectData({
       ...projectData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCurrencyChange = (e) => {
+    setProjectData({
+      ...projectData,
+      currency: e.target.value, // Mettre à jour la devise sélectionnée
     });
   };
 
@@ -40,7 +47,7 @@ const ProjectForm = () => {
     try {
       const response = await axios.get(`https://domain-availability.whoisxmlapi.com/api/v1`, {
         params: {
-          apiKey: 'at_DZ6KUWBbSEJvZP8uG5vv5Xx2lOXj8',
+          apiKey: 'at_vTiyixFFh3eXIEDAsmv3eBRtSF0Ph',
           domainName: projectData.domain, 
         },
       });
@@ -84,7 +91,6 @@ const ProjectForm = () => {
         userEmail: user.email,
       });
 
-      // Rediriger vers la page "Merci" après la soumission réussie
       navigate('/merci');
 
     } catch (error) {
@@ -139,6 +145,13 @@ const ProjectForm = () => {
             Le domaine est {domainAvailability === 'AVAILABLE' ? 'disponible' : 'non disponible'}.
           </p>
         )}
+
+        {/* Sélecteur pour la devise */}
+        <label htmlFor="currency">Choisissez votre devise :</label>
+        <select name="currency" value={projectData.currency} onChange={handleCurrencyChange} required>
+          <option value="DZD">Dinar Algérien (DZD)</option>
+          <option value="EUR">Euro (EUR)</option>
+        </select>
 
         <input type="file" onChange={handleImageChange} />
         <button type="submit">Soumettre le projet</button>

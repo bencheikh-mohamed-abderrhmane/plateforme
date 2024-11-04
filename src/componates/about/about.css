@@ -14,10 +14,13 @@
     padding-right: 30px;
 }
 
-.about-text h1 {
+.quentum {
     font-size: 36px;
+    position: relative;
+    right: 15%;
     font-weight: bold;
     margin-bottom: 20px;
+    
 }
 
 .about-text h3 {
@@ -90,6 +93,10 @@
     .about-image {
         max-width: 100%;
         margin-top: 20px;
+    }
+    .quentum{position: relative;
+        left: 2%;
+    
     }
 }
 

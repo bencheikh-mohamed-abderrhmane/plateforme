@@ -2,49 +2,56 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './hero.css'
 
-
 function Hero() {
     const [domain, setDomain] = useState('');
-    const [availability, setAvailability] = useState(null);
+    const [isAvailable, setIsAvailable] = useState(null);
     const [loading, setLoading] = useState(false);
+    const apiKey = 'at_vTiyixFFh3eXIEDAsmv3eBRtSF0Ph'; // Ta clé API
 
-    const checkDomain = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.get(`https://domain-availability.whoisxmlapi.com/api/v1`, {
-                params: {
-                    apiKey: 'at_DZ6KUWBbSEJvZP8uG5vv5Xx2lOXj8',
-                    domainName: domain
-                }
-            });
-            setAvailability(response.data.DomainInfo.domainAvailability);
-        } catch (error) {
-            console.error('Erreur lors de la vérification du domaine :', error);
+    const checkDomainAvailability = () => {
+        if (!domain) {
+            alert('Veuillez entrer un nom de domaine.');
+            return;
         }
-        setLoading(false);
+
+        setLoading(true);
+        axios.get(`https://www.whoisxmlapi.com/whoisserver/WhoisService?apiKey=${apiKey}&domainName=${domain}&outputFormat=json`)
+            .then(response => {
+                setLoading(false);
+                const whoisRecord = response.data.WhoisRecord;
+                if (whoisRecord && whoisRecord.dataError) {
+                    setIsAvailable(true); // Le domaine est disponible
+                } else {
+                    setIsAvailable(false); // Le domaine n'est pas disponible
+                }
+            })
+            .catch(error => {
+                setLoading(false);
+                console.error('Erreur lors de la vérification du domaine:', error);
+            });
     };
 
     return (
         <div className='hero'>
-           
-            <p>Vérifier la disponibilité du nom de domaine</p>
-            <input 
-                type="text" 
-                value={domain} 
-                onChange={(e) => setDomain(e.target.value)} 
-                placeholder="Entrez votre domaine"
+            <h1>Vérifier la disponibilité d'un nom de domaine</h1>
+            <input
+                type="text"
+                value={domain}
+                onChange={(e) => setDomain(e.target.value)}
+                placeholder="Entrer un nom de domaine"
             />
-            <button onClick={checkDomain}>Vérifier</button>
+            <button onClick={checkDomainAvailability}>
+                {loading ? 'Vérification...' : 'Vérifier la disponibilité'}
+            </button>
 
-            {loading ? <p>Recherche en cours...</p> : (
-                availability && (
-                    <div className={`result ${availability === 'AVAILABLE' ? 'available' : 'not-available'}`}>
-                        {availability === 'AVAILABLE' ? 
-                            <>Le domaine "{domain}" est disponible <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="green" viewBox="0 0 24 24"><path d="M9 16.2l-4.2-4.2-1.4 1.4 5.6 5.6 12-12-1.4-1.4z"/></svg></> : 
-                            <>Le domaine "{domain}" est indisponible</>
-                        }
-                    </div>
-                )
+            {isAvailable !== null && (
+                <div>
+                    {isAvailable ? (
+                        <p>Le domaine <strong>{domain}</strong> est disponible ! 🎉</p>
+                    ) : (
+                        <p>Le domaine <strong>{domain}</strong> n'est pas disponible. 😢</p>
+                    )}
+                </div>
             )}
         </div>
     );
